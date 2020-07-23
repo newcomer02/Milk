@@ -1,0 +1,57 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /milk
+
+## spring config
+spring:
+  # date format config
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  # static resource config
+  mvc:
+    static-path-pattern: /path/**
+  resources:
+    static-locations: ["classpath:/static/","classpath:/public/","file:${prop.folder}"]
+  # datasource config
+  datasource:
+    url: jdbc:mysql://localhost:3306/milk?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  # jpa config
+  jpa:
+    database: mysql
+    show-sql: true
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+  # redis config
+  redis:
+    database: 0
+    host: 127.0.0.1
+    password:
+    jedis:
+      pool:
+        max-active: 200
+        max-wait: -1
+        max-idle: 10
+    port: 6379
+    timeout: 1000
+
+prop:
+  # 图片的存储路径, 上传到服务器端的时候需要修改路径
+  folder: D:/ImgDownload/upload/
+
+## jwt config
+audience:
+  # 接收对象
+  clientId: 098f6bcd4621d373cade4e832627b4f6
+  # 密钥
+  base64Secret: MDk4ZjZiY2Q0NjIxZDM3M2NhZGU0ZTgzMjYyN2I0ZjY=
+  # JWT的签发主体，存入issuer
+  name: restapiuser
+  # 过期时间，时间戳,毫秒级别,以下是 7 天时间
+  expiresSecond: 604800000
