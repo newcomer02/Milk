@@ -40,6 +40,20 @@ spring:
         max-idle: 10
     port: 6379
     timeout: 1000
+  # kafka config
+  kafka:
+    producer:
+      bootstrap-servers: 127.0.0.1:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      bootstrap-servers: 127.0.0.1:9092
+      group-id: milk
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringSerializer
+      value-deserializer: org.apache.kafka.common.serialization.StringSerializer
+      topic: test
+      thread: 3
 
 prop:
   # 图片的存储路径, 上传到服务器端的时候需要修改路径
